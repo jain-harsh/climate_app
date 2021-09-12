@@ -7,13 +7,11 @@ import java.text.DecimalFormat;
 
 public class WeatherDataModel {
 
-    // TODO: Declare the member variables here
         private String temperature;
         private String city;
         private String iconname;
         private int condition;
 
-    // TODO: Create a WeatherDataModel from a JSON:
     public static WeatherDataModel fromJson(JSONObject json){
         try{
             WeatherDataModel model= new WeatherDataModel();
@@ -32,9 +30,6 @@ public class WeatherDataModel {
 
     }
 
-
-
-    // TODO: Uncomment to this to get the weather image name from the condition:
     private static String updateWeatherIcon(int condition) {
 
         if (condition >= 0 && condition < 300) {
@@ -65,9 +60,6 @@ public class WeatherDataModel {
 
         return "dunno";
     }
-
-    // TODO: Create getter methods for temperature, city, and icon name:
-
 
     public String getTemperature() {
         return temperature+"°";
