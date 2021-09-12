@@ -30,26 +30,19 @@ import cz.msebera.android.httpclient.Header;
 
 public class WeatherController extends AppCompatActivity {
 
-    // Constants:
     final int request_code=444;
     final String WEATHER_URL = "http://api.openweathermap.org/data/2.5/weather";
-    // App ID to use OpenWeather data
     final String APP_ID = "374b0d8f37f4aaeceed341999d9063de";
-    // Time between location updates (5000 milliseconds or 5 seconds)
     final long MIN_TIME = 5000;
-    // Distance between location updates (1000m or 1km)
     final float MIN_DISTANCE = 1000;
 
-    // TODO: Set LOCATION_PROVIDER here:
+
     String LOCATION_PROVIDER = LocationManager.GPS_PROVIDER;
 
-
-    // Member Variables:
     TextView mCityLabel;
     ImageView mWeatherImage;
     TextView mTemperatureLabel;
 
-    // TODO: Declare a LocationManager and a LocationListener here:
     LocationManager mlocation;
     LocationListener mlistner;
 
@@ -78,8 +71,6 @@ public class WeatherController extends AppCompatActivity {
 
     }
 
-
-    // TODO: Add onResume() here:
     protected void onResume() {
         super.onResume();
         Intent myintent=getIntent();
@@ -100,7 +91,6 @@ public class WeatherController extends AppCompatActivity {
         letsDoSomeNetworking(params);
     }
 
-    // TODO: Add getWeatherForCurrentLocation() here:
     public void getWeatherForCurrentLocation() {
         mlocation = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
         mlistner = new LocationListener() {
@@ -131,13 +121,7 @@ public class WeatherController extends AppCompatActivity {
             }
         };
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            // TODO: Consider calling
-            //    ActivityCompat#requestPermissions
-            // here to request the missing permissions, and then overriding
-            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-            //                                          int[] grantResults)
-            // to handle the case where the user grants the permission. See the documentation
-            // for ActivityCompat#requestPermissions for more details.
+
             ActivityCompat.requestPermissions(this,new String[] {Manifest.permission.ACCESS_FINE_LOCATION},request_code);
             return;
         }
@@ -170,17 +154,12 @@ public class WeatherController extends AppCompatActivity {
             });
         }
 
-
-    // TODO: Add updateUI() here:
     public void upate(WeatherDataModel model){
         mTemperatureLabel.setText(model.getTemperature());
         mCityLabel.setText(model.getCity());
         int resourseid=getResources().getIdentifier(model.getIconname(),"drawable",getPackageName());
         mWeatherImage.setImageResource(resourseid);
     }
-
-
-    // TODO: Add onPause() here:
 
 
     @Override
